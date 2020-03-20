@@ -85,11 +85,13 @@
             $('#main-form')[0].reset();
             alert("All good data saved");
             window.location.reload();
-            grecaptcha.reset();
+            try{grecaptcha.reset();}catch(err){}
           },
           error: function (err) {
             var d = err.responseJSON;
-            grecaptcha.reset();
+            try{
+             grecaptcha.reset();
+            }catch(err){}
             alertDoc.css({"display" : "block"});
             if(d.message){
               return alertDoc.text(d.message);
