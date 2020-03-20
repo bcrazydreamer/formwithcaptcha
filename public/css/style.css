@@ -1,0 +1,126 @@
+*{
+    /* font-family: 'Montserrat Alternates', sans-serif; */
+    font-family: 'Source Sans Pro', sans-serif;
+    /* font-family: 'Avenir',sans-serif; */
+    outline: none;
+}
+body{
+    height: 100vh;
+    width: 100%;
+    background: #f9f9f9;
+    /* background: rgb(123, 22, 255); */
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+    background: linear-gradient(253deg, #0cc898, #1797d2, #864fe1);
+    background-size: 300% 300%;
+    -webkit-animation: Background 25s ease infinite;
+    -moz-animation: Background 25s ease infinite;
+    animation: Background 25s ease infinite;
+
+}
+.bg-cvr-1{
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    position: absolute;
+    background: rgb(123, 22, 255);
+}
+.bg-cvr-2{
+    width: 100%;
+    position: absolute;
+    background-color:#f9f9f9;
+    height: 50vh;
+    bottom: 0;
+}
+.center-all{display:flex;justify-content:center;align-items:center}
+
+
+.b-cu-f-ctn{
+    z-index: 999999;
+    min-height: 500px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0px 10px 25px 5px #0000000f;
+}
+.w-100{
+    width: 100% !important;
+}
+.tal-c{
+    text-align: center;
+}
+.b-cu-f-ttl{
+    padding-top: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.b-cu-f-inpt-ctn{
+    position: relative;
+    padding: 10px 30px;
+}
+.b-cu-f-inpt-inr-ctn{
+    padding: 10px 0;
+    position: relative;
+}
+.b-cu-f-inpt-lbl{
+    font-size: 18px;
+}
+.b-cu-f-inpt{
+    height: 50px;
+    border-radius: 10px;
+    width: -webkit-fill-available;
+    padding: 15px !important;
+    border: 1px solid #e8e8e8;
+}
+
+.b-cu-f-inpt::placeholder {
+    color: #e8e8e8;
+}
+
+.b-cu-f-btn{
+    width: 50%;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: none !important;
+    background: rgb(123, 22, 255);
+}
+
+.b-cu-f-btn:active{
+    background: rgb(123, 22, 255);
+}
+
+
+
+
+
+
+
+
+
+button{
+    position: relative;
+}
+.ripple {
+    overflow: hidden;
+}
+  
+.ripple-effect {
+    position: absolute;
+    border-radius: 50%;
+    animation: ripple-animation 2s;
+}
+
+@keyframes ripple-animation {
+    from {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    to {
+        transform: scale(100);
+        opacity: 0;
+    }
+}

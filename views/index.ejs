@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= typeof title === 'string' && title.length ? title : "Bharat Rawat" %></title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,500,600|Source+Sans+Pro:400,600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <link rel='stylesheet' href='/css/style.css' />
+    <% if(enblCaptcha) {%>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <% } %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body class="center-all">
+
+
+
+    <div class="bg-cvr-1"></div>
+    <div class="bg-cvr-2"></div>
+
+    <div class="b-cu-f-ctn">
+      <div class="w-100 b-cu-f-ttl center-all">
+        Create User
+      </div>
+      <div class="b-cu-f-inpt-ctn">
+        <form id="main-form">
+            <div class="b-cu-f-inpt-inr-ctn">
+              <div class="b-cu-f-inpt-lbl">Email</div>
+              <input class="b-cu-f-inpt" type="email" name="email" id="i-email" placeholder="Email"/>
+            </div>
+
+            <div class="b-cu-f-inpt-inr-ctn">
+              <div class="b-cu-f-inpt-lbl">Name</div>
+              <input class="b-cu-f-inpt" type="text" name="name" id="i-name" placeholder="Name"/>
+            </div>
+
+            <div class="b-cu-f-inpt-inr-ctn">
+              <div class="b-cu-f-inpt-lbl">Password</div>
+              <input class="b-cu-f-inpt" type="text" name="password" id="i-password" placeholder="Password"/>
+            </div>
+            <input type="text" name="loop_at_tkn" value="<%=loop_at_tkn%>" readonly style="display: none;">
+            <% if(enblCaptcha) {%>
+              <div class="g-recaptcha" data-sitekey="6LfjpOIUAAAAAN1xM3o6CDdQVNg9ONBxZUdMbx7l"></div>
+            <% } %>
+            <div class="b-cu-f-inpt-inr-ctn tal-c">
+              <input type="submit" class="btn b-cu-f-btn ripple" onclick="submitClick()" data-ripple-color="#00000049" id="i-submit"/>
+            </div>
+
+            <div class="alert alert-danger" role="alert" id="i-alert-ctnr" style="display : none"></div>
+        </form>
+
+      </div>
+    </div>
+    
+    
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/bvalid.min.js"></script>
+
+  <script>
+    var bv = new bvalid();
+    var alertDoc = $("#i-alert-ctnr");
+    function submitClick(){
+
+
+      var $inputs = $('#main-form :input');
+      var data = {};
+      $inputs.each(function() {
+        data[this.name] = $(this).val();
+      });
+      $.ajax({
+          type: 'POST',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          url: '/api/cr',
+          success: function (response) {
+            console.log(response);
+            $('#main-form')[0].reset();
+            alert("All good data saved");
+            window.location.reload();
+            grecaptcha.reset();
+          },
+          error: function (err) {
+            var d = err.responseJSON;
+            grecaptcha.reset();
+            alertDoc.css({"display" : "block"});
+            if(d.message){
+              return alertDoc.text(d.message);
+            } else {
+              return alertDoc.text("something went wrong");
+            }
+          }
+      });
+    }
+
+  </script>
+  </body>
+</html>
