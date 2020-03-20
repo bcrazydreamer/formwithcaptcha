@@ -59,7 +59,7 @@ exports.createUserAttamps = (req,res,next)=>{
             req.enblCaptcha = true;
             return next();
         }
-        req.enblCaptcha = true;
+        req.enblCaptcha = false;
         return next();
     })
 }
